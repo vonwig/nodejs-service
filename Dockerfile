@@ -1,4 +1,4 @@
-FROM atomist/nodejs-base:16-stretch
+FROM atomist/nodejs-base:16-stretch@sha256:2c9e37809f190060a1efed2876ff4ee32b5f08ab26ee810117daf89287145f37
 
 COPY package.json package-lock.json ./
 
