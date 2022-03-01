@@ -1,9 +1,12 @@
-FROM gcr.io/personalsdm-216019/nodejs-base:16-stretch@sha256:1c68c082bf717791816fe43570c1e66f40cd9c895bf3598787f16630414d8949
+FROM gcr.io/personalsdm-216019/nodejs-base:14-3.14
 
 COPY package.json package-lock.json ./
 
-RUN  npm ci --no-optional \
- && npm cache clean --force
+RUN  apk add --no-cache \
+ npm=7.17.0-r0 \
+ && npm ci --no-optional \
+ && npm cache clean --force \
+ && apk del npm
 
 COPY .env.example /app/.env.example
 COPY . /app
