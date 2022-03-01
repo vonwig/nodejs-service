@@ -36,7 +36,7 @@ spec:
         app.kubernetes.io/part-of: nodejs-service
     spec:
       containers:
-        - image: gcr.io/personalsdm-216019/nodejs-server
+        - image: gcr.io/personalsdm-216019/nodejs-service
           name: controller
           ports:
             - containerPort: 3000
