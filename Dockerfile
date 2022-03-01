@@ -5,9 +5,8 @@ COPY package.json package-lock.json ./
 RUN  apk add --no-cache \
  npm=7.17.0-r0 \
  && npm ci --no-optional \
- && npm cache clean --force \
- && apk del npm
-
+ && npm cache clean --force
+ 
 COPY .env.example /app/.env.example
 COPY . /app
 
