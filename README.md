@@ -1,6 +1,6 @@
 # nodejs-service
 
-Simple service using `atomist/nodejs-base:16-stretch`.
+Simple service using `gcr.io/personalsdm-216019/nodejs-base:14-3.14`.
 
 ## Usage
 
