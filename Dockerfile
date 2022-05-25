@@ -13,3 +13,8 @@ COPY . /app
 CMD ["npm","start"]
 
 EXPOSE 8080
+
+# atomist-start: fix for https://dso.atomist.com/AQ1K5FIKA/overview/cve/ATM-2022-0001
+RUN apk add --no-cache \
+  busybox=1.33.1-r7
+# atomist-end
