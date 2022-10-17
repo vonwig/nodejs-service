@@ -1,4 +1,4 @@
-FROM gcr.io/personalsdm-216019/nodejs-base:14-3.14@sha256:32b250f8564e7a59cfa6360b7dc7366ac279e9b840991d0eb1be1b4b1a603164
+FROM gcr.io/personalsdm-216019/nodejs-base:14-3.14@sha256:1b325cbe6b6f329eae737fc2090be03a4ce3cab09e57544ff08267e72033298e
 
 COPY package.json package-lock.json ./
 
