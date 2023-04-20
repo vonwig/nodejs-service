@@ -2,7 +2,7 @@ name: Docker
 
 on:
   push:
-    branches: [ "main" ]
+    tags: [ "*" ]
   pull_request:
     branches: [ "**" ]
     
@@ -50,6 +50,8 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           labels: |
             org.opencontainers.image.revision=${{ env.SHA }}
+          tags: |
+            ${{github.ref_name}}
       
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
