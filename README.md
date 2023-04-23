@@ -1,6 +1,6 @@
 # nodejs-service
 
-Simple service using `vonwig/nodejs-base:14-3.14`.
+Simple service using `alpine:3.14`.
 
 ## Usage
 
