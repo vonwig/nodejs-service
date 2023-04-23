@@ -78,5 +78,5 @@ jobs:
           command: compare
           image: ${{ steps.meta.outputs.tags }}
           to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
-          ignore-chaged: true
-          token: ${{ secrets.DOCKER_HUB_TOKEN }}
+          ignore-unchanged: true
+          token: ${{ secrets.DOCKER_PAT }}
