@@ -73,7 +73,7 @@ jobs:
       - name: Docker Scount
         id: docker-scout
         if: ${{ github.event_name == 'pull_request' }}
-        uses: docker/scout-action@591d73f3f5809d6bc5e53c6c1914e998d62c6791
+        uses: docker/scout-action@2e8a47951960355d9a3624a73809ed7d346402f3
         with:
           command: compare
           image: ${{ steps.meta.outputs.tags }}
