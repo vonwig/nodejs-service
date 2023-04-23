@@ -79,4 +79,5 @@ jobs:
           image: ${{ steps.meta.outputs.tags }}
           to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
           ignore-unchanged: true
+          only-serverities: critical,high
           token: ${{ secrets.DOCKER_PAT }}
