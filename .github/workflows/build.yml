@@ -39,7 +39,6 @@ jobs:
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry ${{ env.REGISTRY }}
-        #if: github.event_name != 'pull_request'
         uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
         with:
           registry: ${{ env.REGISTRY }}
@@ -68,7 +67,16 @@ jobs:
         with:
           context: .
           push: true
-            #push: ${{ github.event_name != 'pull_request' }}
-            #load: ${{ github.event_name == 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      
+      - name: Docker Scount
+        id: docker-scout
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: docker/scout-action@591d73f3f5809d6bc5e53c6c1914e998d62c6791
+        with:
+          command: compare
+          image: ${{ steps.meta.outputs.tags }}
+          to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:edge
+          ignore-chaged: true
+          token: ${{ secrets.DOCKER_HUB_TOKEN }}
