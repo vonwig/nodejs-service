@@ -1,10 +1,15 @@
-FROM vonwig/nodejs-base:14-3.14@sha256:32b250f8564e7a59cfa6360b7dc7366ac279e9b840991d0eb1be1b4b1a603164
+FROM alpine:3.14@sha256:eb3e4e175ba6d212ba1d6e04fc0782916c08e1c9d7b45892e9796141b1d379ae
 
-COPY package.json package-lock.json ./
+RUN apk add --no-cache \
+  nodejs
+
+ENV NODE_ENV=production
+
+COPY package.json ./
 
 RUN  apk add --no-cache \
- npm=7.17.0-r0 \
- && npm ci --no-optional \
+ npm \
+ && npm i --no-optional \
  && npm cache clean --force
  
 COPY .env.example /app/.env.example
