@@ -77,7 +77,7 @@ jobs:
         with:
           command: compare
           image: ${{ steps.meta.outputs.tags }}
-          to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
+          to: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:edge
           ignore-unchanged: true
           only-severities: critical,high
           token: ${{ secrets.DOCKER_PAT }}
