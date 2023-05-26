@@ -34,4 +34,4 @@ stages:
         script: |
           docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
           curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s --
-          docker scout version
+          docker scout cves vonwig/nodejs-service:$(tag) --exit-code --only-severity critical,high,medium
