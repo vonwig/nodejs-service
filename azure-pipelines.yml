@@ -31,5 +31,6 @@ stages:
       displayName: Find CVEs on image
       inputs:
         script: |
+          docker login -u $(DOCKER_HUB_USER) -p $(DOCKER_HUB_PAT)
           curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s --
           docker scout version
