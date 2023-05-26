@@ -25,6 +25,7 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: vonwig/nodejs-service
         tags: |
           $(tag)
     - task: CmdLine@2
