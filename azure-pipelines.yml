@@ -20,10 +20,15 @@ stages:
     pool:
       vmImage: ubuntu-latest
     steps:
-    - task: Docker@2
-      displayName: Build an image
+    #- task: Docker@2
+    #  displayName: Build an image
+    #  inputs:
+    #    command: build
+    #    dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    #    tags: |
+    #      $(tag)
+    - task: CmdLine@2
+      displayName: Find CVEs on image
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+        script: |
+          curl -sSfL https://raw.githubusercontent.com/docker/base-cli-plugin/main/install.sh | sh -s --
