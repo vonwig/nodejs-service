@@ -32,4 +32,5 @@ stages:
       inputs:
         script: |
           curl -sSfL https://raw.githubusercontent.com/docker/base-cli-plugin/main/install.sh | sh -s --
+          echo $DOCKER_CONFIG
           docker scout version
