@@ -31,6 +31,7 @@ stages:
       displayName: Find CVEs on image
       inputs:
         script: |
+          docker info
           curl -sSfL https://raw.githubusercontent.com/docker/base-cli-plugin/main/install.sh | sh -s --
           echo $DOCKER_CONFIG
           docker scout version
