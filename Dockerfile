@@ -1,4 +1,4 @@
-FROM alpine:3.14@sha256:eb3e4e175ba6d212ba1d6e04fc0782916c08e1c9d7b45892e9796141b1d379ae
+FROM alpine:3.18
 
 RUN apk add --no-cache \
   nodejs
@@ -16,5 +16,7 @@ COPY .env.example /app/.env.example
 COPY . /app
 
 CMD ["npm","start"]
+
+#ENV GITHUB_TOKEN=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
 
 EXPOSE 8080
