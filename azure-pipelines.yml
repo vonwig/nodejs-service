@@ -10,6 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  image: 'vonwig/nodejs-service'
 
 stages:
 - stage: Build
@@ -25,5 +26,12 @@ stages:
       inputs:
         command: build
         dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: $(image)
         tags: |
           $(tag)
+    - task: CmdLine@2
+      displayName: Find CVEs on image
+      inputs:
+        script: |
+          curl -sSfL https://raw.githubusercontent.com/docker/scout-cli/main/install.sh | sh -s --
+          docker scout cves $(image):$(tag) --exit-code --only-severity critical,high

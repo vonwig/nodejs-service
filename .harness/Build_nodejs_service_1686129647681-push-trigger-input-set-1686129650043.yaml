@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_nodejs_service_1686129647681-push-trigger-input-set
+  identifier: Build_nodejs_service_1686129647681pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_nodejs_service_1686129647681
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
