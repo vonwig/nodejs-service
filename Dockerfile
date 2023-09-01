@@ -1,20 +1,36 @@
-FROM alpine:3.14@sha256:eb3e4e175ba6d212ba1d6e04fc0782916c08e1c9d7b45892e9796141b1d379ae
+# syntax=docker/dockerfile:1
 
-RUN apk add --no-cache \
-  nodejs
+# Comments are provided throughout this file to help you get started.
+# If you need more help, visit the Dockerfile reference guide at
+# https://docs.docker.com/engine/reference/builder/
 
-ENV NODE_ENV=production
+ARG NODE_VERSION=18.14.1
 
-COPY package.json ./
+FROM node:${NODE_VERSION}-alpine
 
-RUN  apk add --no-cache \
- npm \
- && npm i --no-optional \
- && npm cache clean --force
- 
-COPY .env.example /app/.env.example
-COPY . /app
+# Use production node environment by default.
+ENV NODE_ENV production
 
-CMD ["npm","start"]
 
+WORKDIR /usr/src/app
+
+# Download dependencies as a separate step to take advantage of Docker's caching.
+# Leverage a cache mount to /root/.npm to speed up subsequent builds.
+# Leverage a bind mounts to package.json and package-lock.json to avoid having to copy them into
+# into this layer.
+RUN --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=package-lock.json,target=package-lock.json \
+    --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
+
+# Run the application as a non-root user.
+USER node
+
+# Copy the rest of the source files into the image.
+COPY . .
+
+# Expose the port that the application listens on.
 EXPOSE 8080
+
+# Run the application.
+CMD npm start
