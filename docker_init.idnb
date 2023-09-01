@@ -1,0 +1,1 @@
+{"cells":[{"kind":2,"language":"shellscript","value":"docker init"},{"kind":1,"language":"markdown","value":"Hello"},{"kind":2,"language":"shell script","value":"docker compose up -d --build"}]}
